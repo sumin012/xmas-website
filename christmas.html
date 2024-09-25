@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jingle Bell</title>
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column; 
+      justify-content: center;
+      align-items: center;
+      background-image: url('christmas-background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      text-align: center;
+      color: white;
+    }
+
+   
+    h1 {
+      font-family: 'Mountains of Christmas', cursive; /* 폰트 변경 */
+      font-size: 2.5rem;
+      margin-top: 10px; 
+      margin-bottom: 50px; 
+    }
+
+    #handbell {
+      width: 300px; 
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+ 
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-15deg); }
+      50% { transform: rotate(15deg); }
+      75% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .shaking {
+      animation: shake 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Click the handbell to play the Jingle Bell!!</h1>
+    <img id="handbell" src="bell.jpeg" alt="Handbell" onclick="toggleMusicAndShake()">
+  </div>
+
+  <audio id="bgm" src="jinglebell.mp3"></audio>
+
+  <script>
+    var isPlaying = false; 
+
+    function toggleMusicAndShake() {
+      var bgm = document.getElementById('bgm');
+      var handbell = document.getElementById('handbell');
+
+      if (isPlaying) {
+        bgm.pause(); 
+      } else {
+        bgm.play(); 
+      }
+
+      isPlaying = !isPlaying; 
+
+      handbell.classList.add('shaking');
+
+      setTimeout(function() {
+        handbell.classList.remove('shaking');
+      }, 500); 
+    }
+  </script>
+</body>
+</html>
+
